@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { app_routing } from './app.routes';
 
+import { HeroesService } from './services/heroes.service';
+
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroeComponent } from './components/heroes/heroe.component';
@@ -20,7 +22,9 @@ import { HeroeComponent } from './components/heroes/heroe.component';
     HttpModule,
     app_routing
   ],
-  providers: [],
+  providers: [
+    HeroesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,36 @@
-<p>
-  heroes works!
-</p>
+<h1>Heroes</h1>
+<hr />
+<div class="row">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-outline-primary mb-2"
+            type="button" name="button"
+            [routerLink]="['/heroe', 'nuevo']">
+            Nuevo héroe
+    </button>
+  </div>
+</div>
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Casa</th>
+            <th>OPciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
