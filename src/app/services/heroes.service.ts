@@ -9,6 +9,8 @@ export class HeroesService {
   
   heroesURL: string = 'https://heroesapp-ff3c2.firebaseio.com/heroes.json';
 
+  heroeURL: string = 'https://heroesapp-ff3c2.firebaseio.com/heroes';
+
 
   constructor(private http: Http ) { }
   
@@ -27,6 +29,24 @@ export class HeroesService {
         console.log( res.json() );
         return res.json();
       });
+  }
+
+    // PUT en bbdd
+  actualizarHeroe( heroe: Heroe, key$: string ) {
+    let body = JSON.stringify( heroe );
+
+    // Esto no es necesiario es solo a modo demostrativo de envio de headers en la solicitud
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    let url = `${this.heroeURL}/${key$}.json`;
+
+    return this.http.put( url, body, {headers})
+      .map( res =>{
+        console.log(res.json());
+        return res.json();
+      })
   }
 
 }
