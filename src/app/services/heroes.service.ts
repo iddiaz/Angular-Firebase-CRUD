@@ -13,13 +13,9 @@ export class HeroesService {
 
 
   constructor(private http: Http ) { }
-  
-  // Crear heroe - POST heroe.
   nuevoHeroe (heroe: Heroe ) {
 
     let body = JSON.stringify( heroe );
-    
-    // definición de encabezado de la petición
     let headers = new Headers({
       'Content-type': 'application/json'
     });
@@ -31,11 +27,9 @@ export class HeroesService {
       });
   }
 
-    // PUT en bbdd
+    // PUT
   actualizarHeroe( heroe: Heroe, key$: string ) {
     let body = JSON.stringify( heroe );
-
-    // Esto no es necesiario es solo a modo demostrativo de envio de headers en la solicitud
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -44,7 +38,6 @@ export class HeroesService {
 
     return this.http.put( url, body, {headers})
       .map( res => {
-        // console.log(res.json());
         return res.json();
       });
   }
@@ -57,6 +50,12 @@ export class HeroesService {
 
   getHeroes() {
     return this.http.get( this.heroesURL ).map( res => res.json());
+  }
+    // DELETE
+    borrarHeroe( key$: string ) {
+    let url = `${this.heroeURL}/${key$}.json`;
+    return this.http.delete( url )
+      .map( res => res.json());
   }
 
 

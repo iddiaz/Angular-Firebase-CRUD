@@ -19,7 +19,7 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Casa</th>
-            <th>Opciones</th>
+            <th class="text-right pr-4">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -27,13 +27,13 @@
             <th scope="row">{{ i + 1}}</th>
             <td>{{heroes[key].nombre}}</td>
             <td>{{heroes[key].casa}}</td>
-            <td>
+            <td class="text-right">
               <button [routerLink] = "['/heroe', key]"
                       type="button"
                       class="btn btn-outline-success btn-sm">
                       Editar
               </button>
-              <button (click)="borrarHeroe()"
+              <button (click)="borrarHeroe( key )"
                       type="button"
                       class="btn btn-outline-danger btn-sm">
                       Eliminar
@@ -42,6 +42,9 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="(heroes | keys).length === 0"  class="alert alert-info" role="alert">
+        <strong>No existen</strong> registros que mostrar
+      </div>
     </div>
   </div>
 </div>
