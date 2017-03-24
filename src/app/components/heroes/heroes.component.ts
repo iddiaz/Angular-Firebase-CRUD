@@ -10,6 +10,7 @@ import { Heroe } from './../../interfaces/heroe.interface';
 export class HeroesComponent implements OnInit {
 
   heroes: any[] = [];
+  loading: boolean = true;
 
   constructor( private _heroesService: HeroesService ) { }
 
@@ -17,7 +18,11 @@ export class HeroesComponent implements OnInit {
     this._heroesService.getHeroes()
       .subscribe( data => {
         this.heroes = data;
-        
+        this.loading = false;
+        // setTimeout( () => {
+        //   this.loading = false;
+        //   this.heroes = data;
+        // }, 3000);
       })
   }
   // recibe la key de firebase
@@ -27,11 +32,9 @@ export class HeroesComponent implements OnInit {
         if ( respuesta ) {
           console.error(respuesta);
         } else {
-          // todo ha ido bien, borramos el objeto
           delete this.heroes[ key$];
         }
       });
-
   }
 
 }
