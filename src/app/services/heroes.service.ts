@@ -43,10 +43,21 @@ export class HeroesService {
     let url = `${this.heroeURL}/${key$}.json`;
 
     return this.http.put( url, body, {headers})
-      .map( res =>{
-        console.log(res.json());
+      .map( res => {
+        // console.log(res.json());
         return res.json();
-      })
+      });
   }
+
+  getHeroe( key$: string ) {
+    let url = `${this.heroeURL}/${ key$ }.json`;
+
+    return this.http.get( url ).map( res => res.json());
+  }
+
+  getHeroes() {
+    return this.http.get( this.heroesURL ).map( res => res.json());
+  }
+
 
 }

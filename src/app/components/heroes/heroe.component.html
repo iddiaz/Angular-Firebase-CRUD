@@ -6,6 +6,10 @@
     <button type="button" 
             [routerLink]="['heroes']"
             class="btn btn-outline-danger ">Volver</button>    
+    <button type="button" 
+            (click)="agregarNuevo(forma)"
+            [routerLink]="['heroes']"
+            class="btn btn-outline-success">Nuevo Héroe</button>    
   </div>
 </div>
 

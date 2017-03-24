@@ -1,10 +1,11 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Heroe } from './../../interfaces/heroe.interface';
 
-// import { } from '@angular/forms';
-
 import { HeroesService } from './../../services/heroes.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-heroe',
@@ -13,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeroeComponent implements OnInit {
 
-  heroe: Heroe = {
+  private heroe: Heroe = {
     nombre: '',
     bio: '',
     casa: 'Marvel'
@@ -28,11 +29,13 @@ export class HeroeComponent implements OnInit {
                private activatedRoute: ActivatedRoute ) {
 
      this.activatedRoute.params.subscribe( parametros => {
-       console.log(parametros);
-       // Obtenemos el valor del paramatro de la url.
-       // los parametros vienen con el nombre dado en el router (:id)
        this.id = parametros['id'];
-     });
+
+       if( this.id !== 'nuevo') {
+         this._heroesService.getHeroe( this.id ).subscribe( heroe => this.heroe = heroe );
+       }
+
+      });
   }
 
   ngOnInit() {}
@@ -58,10 +61,14 @@ export class HeroeComponent implements OnInit {
            }, error => {
              console.log(error);
            });
-         
        }
+  }
 
-   
+  agregarNuevo(forma: NgForm ) {
+    this.router.navigate(['/heroe', 'nuevo']);
+    forma.reset({
+      casa: 'Marvel'
+    });
   }
 
 
